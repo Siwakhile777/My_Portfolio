@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siwakhile Mweli - Data Analyst Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    
+    .dark body {
+      background: linear-gradient(to bottom, #111827 0%, #0f172a 100%);
+      color: #f3f4f6;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #ffffff 100%);
+    }
+    
+    .dark .hero-section {
+      background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #1f2937 100%);
+    }
+    
+    /* Animated Grid Background */
+    .hero-bg-blob {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+      transition: background-position 0.3s ease;
+    }
+    
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 50px 50px; }
+    }
+    
+    .dark .hero-bg-blob {
+      background-image: 
+        linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+    }
+    
+    /* Floating Dots */
+    .blob-1, .blob-2, .blob-3, .blob-4, .blob-5 {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(34, 197, 94, 0.5);
+      pointer-events: auto;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+    }
+    
+    .blob-1 {
+      top: 20%;
+      left: 10%;
+      animation: floatDot 6s ease-in-out infinite;
+    }
+    
+    .blob-2 {
+      top: 60%;
+      right: 15%;
+      animation: floatDot 8s ease-in-out infinite reverse;
+    }
+    
+    .blob-3 {
+      top: 40%;
+      left: 25%;
+      animation: floatDot 7s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+    
+    .blob-4 {
+      bottom: 30%;
+      right: 30%;
+      animation: floatDot 9s ease-in-out infinite reverse;
+      animation-delay: 2s;
+    }
+    
+    .blob-5 {
+      top: 70%;
+      left: 40%;
+      animation: floatDot 5s ease-in-out infinite;
+      animation-delay: 1.5s;
+    }
+    
+    @keyframes floatDot {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+    }
+    
+    .blob-1:hover, .blob-2:hover, .blob-3:hover, .blob-4:hover, .blob-5:hover {
+      transform: scale(4);
+      background-color: rgba(34, 197, 94, 0.9);
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.8);
+    }
+    
+    .hero-bg-blob::before,
+    .hero-bg-blob::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      animation: pulse 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    
+    .hero-bg-blob::before {
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.3), transparent);
+      top: -100px;
+      left: -100px;
+    }
+    
+    .hero-bg-blob::after {
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.25), transparent);
+      bottom: -100px;
+      right: -100px;
+      animation-delay: 2s;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.15; }
+      50% { transform: scale(1.2); opacity: 0.25; }
+    }
+    
+    /* Navbar */
+    .navbar-blur {
+      background-color: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(34, 197, 94, 0.12);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    }
+    
+    .dark .navbar-blur {
+      background-color: rgba(31, 41, 55, 0.97);
+      border-bottom: 1px solid rgba(34, 197, 94, 0.18);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    nav a {
+      position: relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: #22c55e;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Theme Toggle */
+    .theme-toggle {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background-color: #e5e7eb;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: none;
+      padding: 0;
+    }
+    
+    .dark .theme-toggle {
+      background-color: #374151;
+    }
+    
+    .theme-toggle-circle {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      background-color: white;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark .theme-toggle-circle {
+      transform: translateX(30px);
+      background-color: #374151;
+    }
+    
+    .sun-icon { color: #f59e0b; font-size: 12px; }
+    .moon-icon { color: #60a5fa; font-size: 12px; }
+    
+    /* Social icons */
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: #f9fafb;
+      border: 2px solid #e5e7eb;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-icon::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+      z-index: 0;
+    }
+    
+    .social-icon i {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .dark .social-icon {
+      background-color: #374151;
+      border-color: #4b5563;
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .social-icon:hover::before {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .icon-linkedin {
+      color: #0077b5;
+    }
+    
+    .icon-linkedin::before {
+      background-color: rgba(0, 119, 181, 0.12);
+    }
+    
+    .icon-linkedin:hover {
+      border-color: #0077b5;
+    }
+    
+    .icon-github {
+      color: #333333;
+    }
+    
+    .icon-github::before {
+      background-color: rgba(51, 51, 51, 0.12);
+    }
+    
+    .dark .icon-github {
+      color: #ffffff;
+    }
+    
+    .dark .icon-github::before {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+    
+    .icon-github:hover {
+      border-color: #333333;
+    }
+    
+    .dark .icon-github:hover {
+      border-color: #ffffff;
+    }
+    
+    /* Professional text colors */
+    .text-primary { color: #22c55e; }
+    .dark .text-primary { color: #86efac; }
+    
+    .text-secondary { color: #6b7280; }
+    .dark .text-secondary { color: #d1d5db; }
+    
+    /* Buttons */
+    .btn-primary {
+      padding: 12px 32px;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 15px;
+      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+    }
+    
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      padding: 12px 32px;
+      background-color: transparent;
+      color: #22c55e;
+      border: 2.5px solid #22c55e;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background-color: rgba(34, 197, 94, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    
+    .btn-secondary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn-secondary:hover {
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.2);
+      transform: translateY(-3px);
+    }
+    
+    .btn-secondary span, .btn-secondary i {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .dark .btn-secondary {
+      color: #86efac;
+      border-color: #86efac;
+    }
+    
+    .dark .btn-secondary::before {
+      background-color: rgba(134, 239, 172, 0.1);
+    }
+    
+    /* Profile image */
+    .profile-img-wrapper {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(135deg, #22c55e 0%, #16a34a 100%) border-box;
+      box-shadow: 0 20px 60px rgba(34, 197, 94, 0.2),
+                  0 0 0 20px rgba(34, 197, 94, 0.05);
+      animation: pulse-border 3s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-border {
+      0%, 100% { box-shadow: 0 20px 60px rgba(34, 197, 94, 0.2), 0 0 0 20px rgba(34, 197, 94, 0.05); }
+      50% { box-shadow: 0 20px 60px rgba(34, 197, 94, 0.3), 0 0 0 25px rgba(34, 197, 94, 0.08); }
+    }
+    
+    .dark .profile-img-wrapper {
+      background: linear-gradient(#1f2937, #1f2937) padding-box,
+                  linear-gradient(135deg, #86efac 0%, #22c55e 100%) border-box;
+    }
+    
+    .profile-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .profile-img-wrapper:hover img {
+      transform: scale(1.08);
+    }
+    
+    /* Section backgrounds */
+    .about-section {
+      background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+    }
+    
+    .dark .about-section {
+      background: linear-gradient(to bottom, #111827 0%, #0f172a 100%);
+    }
+    
+    .journey-section {
+      background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+    }
+    
+    .dark .journey-section {
+      background: linear-gradient(to bottom, #1f2937 0%, #111827 100%);
+    }
+    
+    .projects-section {
+      background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+    }
+    
+    .dark .projects-section {
+      background: linear-gradient(to bottom, #111827 0%, #0f172a 100%);
+    }
+    
+    .reports-section {
+      background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+    }
+    
+    .dark .reports-section {
+      background: linear-gradient(to bottom, #1f2937 0%, #111827 100%);
+    }
+    
+    .contact-section {
+      background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+      position: relative;
+    }
+    
+    .dark .contact-section {
+      background: linear-gradient(to bottom, #1f2937 0%, #111827 100%);
+    }
+    
+    /* Section headers */
+    section h2 {
+      position: relative;
+      display: inline-block;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #22c55e 0%, transparent 100%);
+      transition: width 0.6s ease;
+    }
+    
+    section:hover h2::after {
+      width: 100%;
+    }
+    
+    /* Skills Grid */
+    .skill-category {
+      background-color: white;
+      border-radius: 16px;
+      padding: 28px;
+      border: 2px solid #f3f4f6;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-category::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #22c55e, transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .skill-category:hover::before {
+      left: 100%;
+    }
+    
+    .dark .skill-category {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+    
+    .skill-category:hover {
+      border-color: #22c55e;
+      box-shadow: 0 12px 40px rgba(34, 197, 94, 0.15);
+      transform: translateY(-4px);
+    }
+    
+    .skill-category h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .skill-tag {
+      display: inline-block;
+      padding: 9px 18px;
+      background-color: #f9fafb;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 24px;
+      color: #374151;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 10px;
+      margin-right: 8px;
+      cursor: default;
+    }
+    
+    .dark .skill-tag {
+      background-color: #374151;
+      border-color: #4b5563;
+      color: #e5e7eb;
+    }
+    
+    .skill-tag:hover {
+      background-color: #ffffff;
+      border-color: #22c55e;
+      color: #22c55e;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    }
+    
+    .dark .skill-tag:hover {
+      background-color: #4b5563;
+      border-color: #22c55e;
+      color: #86efac;
+    }
+    
+    /* About content */
+    .about-content {
+      background-color: white;
+      border-radius: 16px;
+      padding: 36px;
+      border: 2px solid #f3f4f6;
+      line-height: 1.9;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+    
+    .dark .about-content {
+      background-color: #1f2937;
+      border-color: #374151;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .about-content:hover {
+      box-shadow: 0 8px 32px rgba(34, 197, 94, 0.1);
+    }
+    
+    .about-content p {
+      margin-bottom: 24px;
+      font-size: 16.5px;
+      color: #4b5563;
+    }
+    
+    .dark .about-content p {
+      color: #d1d5db;
+    }
+    
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Timeline */
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .dark .timeline-dot {
+      border-color: #1f2937;
+    }
+    
+    .timeline-line {
+      width: 3px;
+      height: 60px;
+      background: linear-gradient(to bottom, #22c55e 0%, #e5e7eb 100%);
+    }
+    
+    .dark .timeline-line {
+      background: linear-gradient(to bottom, #22c55e 0%, #4b5563 100%);
+    }
+    
+    /* Project Card */
+    .project-card {
+      background-color: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid #f3f4f6;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    
+    .dark .project-card {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(34, 197, 94, 0.15);
+      border-color: #22c55e;
+    }
+    
+    .project-image {
+      height: 280px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      position: relative;
+    }
+    
+    .dark .project-image {
+      background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .project-card:hover .project-image img {
+      transform: scale(1.12);
+    }
+    
+    .project-hover {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.97) 0%, rgba(22, 163, 74, 0.97) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .project-card:hover .project-hover {
+      opacity: 1;
+    }
+    
+    .project-hover a {
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .project-hover .github-btn {
+      background-color: #1f2937;
+      color: white;
+    }
+    
+    .project-hover .live-btn {
+      background-color: white;
+      color: #22c55e;
+    }
+    
+    .project-hover a:hover {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Tags */
+    .tag-ecom { background-color: #fef3c7; color: #b45309; }
+    .dark .tag-ecom { background-color: #713f12; color: #fcd34d; }
+    
+    /* Report Cards */
+    .report-card {
+      background-color: white;
+      border-radius: 16px;
+      padding: 28px;
+      border: 2px solid #f3f4f6;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .dark .report-card {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+    
+    .report-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #22c55e, transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .report-card:hover::before {
+      left: 100%;
+    }
+    
+    .report-card:hover {
+      border-color: #22c55e;
+      box-shadow: 0 12px 40px rgba(34, 197, 94, 0.15);
+      transform: translateY(-4px);
+    }
+    
+    .report-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #22c55e;
+      margin: 0 auto 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .dark .report-icon {
+      background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+    }
+    
+    .report-card:hover .report-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* Modal Styles */
+    .report-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .report-modal-content {
+      background-color: white;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+      animation: slideUp 0.3s ease;
+    }
+    
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .dark .report-modal-content {
+      background-color: #1f2937;
+    }
+    
+    .close-report {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #6b7280;
+      transition: color 0.3s ease;
+      z-index: 10;
+    }
+    
+    .close-report:hover {
+      color: #22c55e;
+    }
+    
+    #reportContent {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #374151;
+    }
+    
+    .dark #reportContent {
+      color: #d1d5db;
+    }
+    
+    #reportContent h1, #reportContent h2, #reportContent h3 {
+      color: #22c55e;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    
+    #reportContent h1 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    
+    #reportContent h2 {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    
+    #reportContent h3 {
+      font-size: 16px;
+    }
+    
+    #reportContent p {
+      margin-bottom: 16px;
+    }
+    
+    #reportContent ul, #reportContent ol {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+    
+    #reportContent li {
+      margin-bottom: 8px;
+    }
+    
+    /* Metric Cards */
+    .metric-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid #f3f4f6;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .dark .metric-card {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+    
+    .metric-card:hover {
+      border-color: #22c55e;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15);
+    }
+    
+    .metric-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: #22c55e;
+      margin-bottom: 8px;
+    }
+    
+    .metric-label {
+      font-size: 14px;
+      color: #6b7280;
+      font-weight: 600;
+    }
+    
+    .dark .metric-label {
+      color: #d1d5db;
+    }
+    
+    /* Feature List */
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .feature-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #f3f4f6;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .dark .feature-list li {
+      border-bottom-color: #374151;
+    }
+    
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      background-color: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #22c55e;
+      font-size: 14px;
+      flex-shrink: 0;
+      font-weight: bold;
+    }
+    
+    .dark .feature-icon {
+      background-color: #064e3b;
+    }
+    
+    /* Footer - PROPERLY THEMED */
+    footer {
+      border-top: 2px solid #e5e7eb;
+      background: linear-gradient(to top, #f9fafb 0%, #ffffff 100%);
+      padding: 40px 20px 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .dark footer {
+      border-top-color: #374151;
+      background: linear-gradient(to top, #111827 0%, #1f2937 100%);
+    }
+    
+    footer p {
+      transition: color 0.3s ease;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    section > div {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    .dark ::-webkit-scrollbar-track {
+      background: #1f2937;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #22c55e;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #16a34a;
+    }
+
+    /* Contact Info Display */
+    .contact-info {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border: 2px solid #22c55e;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .dark .contact-info {
+      background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+      border-color: #22c55e;
+    }
+
+    .contact-info p {
+      font-size: 18px;
+      font-weight: 600;
+      color: #047857;
+      margin: 0;
+    }
+
+    .dark .contact-info p {
+      color: #86efac;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-50 navbar-blur">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <h1 class="text-xl font-bold text-primary">Siwakhile</h1>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="text-sm font-medium text-secondary hover:text-primary transition">Home</a>
+          <a href="#about" class="text-sm font-medium text-secondary hover:text-primary transition">About</a>
+          <a href="#journey" class="text-sm font-medium text-secondary hover:text-primary transition">Journey</a>
+          <a href="#projects" class="text-sm font-medium text-secondary hover:text-primary transition">Projects</a>
+          <a href="#reports" class="text-sm font-medium text-secondary hover:text-primary transition">Reports</a>
+          <a href="#contact" class="text-sm font-medium text-secondary hover:text-primary transition">Contact</a>
+        </div>
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()">
+          <div class="theme-toggle-circle">
+            <i class="bi bi-sun-fill sun-icon dark:hidden"></i>
+            <i class="bi bi-moon-fill moon-icon hidden dark:inline"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-bg-blob">
+      <div class="blob-1"></div>
+      <div class="blob-2"></div>
+      <div class="blob-3"></div>
+      <div class="blob-4"></div>
+      <div class="blob-5"></div>
+    </div>
+
+    <div class="max-w-2xl mx-auto w-full relative z-10 px-4 text-center" style="position: relative; z-index: 10;">
+      <!-- Profile Image -->
+      <div class="mb-8 inline-block">
+        <div class="profile-img-wrapper">
+          <img src="Avatar.jpg" alt="Siwakhile Mweli" />
+        </div>
+      </div>
+
+      <!-- Name and Title -->
+      <h1 class="text-5xl md:text-6xl font-bold mb-3" style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Siwakhile Mweli</h1>
+      <p class="text-xl font-semibold text-secondary mb-6">Data Analyst | Data Storyteller</p>
+
+      <!-- Tagline -->
+      <p class="text-xl text-secondary mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
+        Empowering good decisions one dataset at a time. I turn numbers into clear stories and insight-driven action.
+      </p>
+
+      <!-- Social Media Links -->
+      <div class="flex justify-center gap-3 mb-10">
+        <a href="https://www.linkedin.com/in/siwakhile-mweli-347771381/" target="_blank" title="LinkedIn" class="social-icon icon-linkedin">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://github.com/Siwakhile777" target="_blank" title="GitHub" class="social-icon icon-github">
+          <i class="bi bi-github"></i>
+        </a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="Siwakhile_CV.docx" download class="btn-primary">
+          <i class="bi bi-download"></i> Download CV
+        </a>
+        <a href="#projects" class="btn-secondary">
+          <i class="bi bi-arrow-right"></i> View Project
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section py-24 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-3 text-primary">About Me</h2>
+        <div class="w-20 h-1.5 bg-primary rounded-full" style="background: linear-gradient(90deg, #22c55e 0%, transparent 100%);"></div>
+      </div>
+
+      <div class="mb-12">
+        <!-- About Content -->
+        <div class="about-content max-w-4xl mx-auto">
+          <p>
+            I'm a passionate data analyst and final-year BINCT student at Durban University of Technology. My mission is to transform raw data into compelling narratives that drive informed decision-making and sustainable business growth.
+          </p>
+          <p>
+            With knowledge across Python, SQL, Power BI, and advanced analytics, I specialize in building elegant solutions that make complex data accessible, actionable, and beautiful. I believe data is more than numbers—it's a story waiting to be told.
+          </p>
+          <p>
+            Whether analyzing market trends, optimizing operations, or uncovering hidden insights, I'm committed to bringing clarity, impact, and strategic value to every project I undertake.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Technical Skills -->
+        <div class="skill-category">
+          <h3><i class="bi bi-code-slash"></i> Technical Skills</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="skill-category">
+          <h3><i class="bi bi-people-fill"></i> Soft Skills</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Data Storytelling</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Leadership</span>
+            <span class="skill-tag">Collaboration</span>
+            <span class="skill-tag">Critical Thinking</span>
+            <span class="skill-tag">Presentation</span>
+          </div>
+        </div>
+
+        <!-- Specializations -->
+        <div class="skill-category">
+          <h3><i class="bi bi-graph-up"></i> Specializations</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">EDA</span>
+            <span class="skill-tag">Dashboard Design</span>
+            <span class="skill-tag">Statistical Analysis</span>
+            <span class="skill-tag">Data Visualization</span>
+            <span class="skill-tag">Data Cleaning</span>
+            <span class="skill-tag">Reporting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section id="journey" class="journey-section py-24 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-3 text-primary">My Journey</h2>
+        <div class="w-20 h-1.5 bg-primary rounded-full" style="background: linear-gradient(90deg, #22c55e 0%, transparent 100%);"></div>
+      </div>
+      
+      <div class="space-y-8">
+        <div class="flex gap-8">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="pb-8">
+            <h3 class="text-xl font-bold mb-2">DUT Student</h3>
+            <p class="text-primary font-semibold mb-2 text-sm">2023 - Present</p>
+            <p class="text-secondary">Started my academic adventure at Durban University of Technology, specializing in BINCT and discovering a passion for storytelling through data and analytics.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-8">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="pb-8">
+            <h3 class="text-xl font-bold mb-2">Professional Growth</h3>
+            <p class="text-primary font-semibold mb-2 text-sm">2024</p>
+            <p class="text-secondary">Developed comprehensive data analysis projects, honed my technical toolkit on real-world business challenges. </p>
+          </div>
+        </div>
+
+        <div class="flex gap-8">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot"></div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Continuous Learning</h3>
+            <p class="text-primary font-semibold mb-2 text-sm">Ongoing</p>
+            <p class="text-secondary">Active in the data community, sharing insights and continuously evolving. Focused on mastering advanced analytics and business intelligence to deliver greater value in every project.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-3 text-primary">Featured Project</h2>
+        <div class="w-20 h-1.5 bg-primary rounded-full" style="background: linear-gradient(90deg, #22c55e 0%, transparent 100%);"></div>
+      </div>
+
+      <!-- Single Project Card -->
+      <div class="mb-16">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="04_customer_analysis.png" alt="E-Commerce Sales Analysis" />
+            <div class="project-hover">
+              <a class="github-btn" href="https://github.com/Siwakhile777/E-Commerce-Sales-Analysis" target="_blank"><i class="bi bi-github"></i> View on GitHub</a>
+              <a class="live-btn" href="#reports" onclick="toggleReport('insights')"><i class="bi bi-file-earmark-pdf"></i> View Insights</a>
+            </div>
+          </div>
+          <div class="p-8">
+            <span class="tag-ecom px-3 py-1 rounded-full text-xs font-semibold">E-Commerce Analytics</span>
+            <h3 class="text-2xl font-bold mt-4 mb-3">E-Commerce Sales Analysis</h3>
+            <p class="text-base text-secondary mb-6">
+              Comprehensive end-to-end data analysis project analyzing online retail transactions. Built complete analytical pipeline from data extraction through insights generation, featuring advanced visualizations, SQL queries, and business intelligence dashboards.
+            </p>
+
+            <!-- Key Metrics -->
+            <div class="mb-8">
+              <h4 class="text-lg font-bold mb-4 text-primary">Key Metrics</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="metric-card">
+                  <div class="metric-value">541K</div>
+                  <div class="metric-label">Records Analyzed</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">4,338</div>
+                  <div class="metric-label">Customers</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">18,532</div>
+                  <div class="metric-label">Orders</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">$8.9M</div>
+                  <div class="metric-label">Revenue</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Data Quality Stats -->
+            <div class="mb-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 rounded-lg border-l-4 border-green-500">
+              <h4 class="text-lg font-bold mb-3 text-primary">Data Quality</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-sm text-secondary">Original Records</p>
+                  <p class="text-2xl font-bold">541,909</p>
+                </div>
+                <div>
+                  <p class="text-sm text-secondary">Cleaned Records</p>
+                  <p class="text-2xl font-bold">392,692</p>
+                </div>
+                <div>
+                  <p class="text-sm text-secondary">Records Removed</p>
+                  <p class="text-2xl font-bold">149,217</p>
+                </div>
+                <div>
+                  <p class="text-sm text-secondary">Data Integrity</p>
+                  <p class="text-2xl font-bold">72.5%</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Features -->
+            <div class="mb-8">
+              <h4 class="text-lg font-bold mb-4 text-primary">Project Highlights</h4>
+              <ul class="feature-list">
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>Processed 541K+ transaction records with 27.5% data cleaning</span>
+                </li>
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>65.6% repeat customer rate indicates strong retention</span>
+                </li>
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>Customer Lifetime Value: $2,048.69 average per customer</span>
+                </li>
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>Geographic analysis across 37 countries worldwide</span>
+                </li>
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>3,877 unique products analyzed for performance patterns</span>
+                </li>
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>Average Order Value: $479.56 with 5.15M items sold</span>
+                </li>
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>6 professional visualizations for business insights</span>
+                </li>
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>8 production-ready SQL queries for BI integration</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Technologies Used -->
+            <div class="mb-8">
+              <h4 class="text-lg font-bold mb-4 text-primary">Technologies Used</h4>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">Python</span>
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">Pandas</span>
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">NumPy</span>
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">Matplotlib</span>
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">Seaborn</span>
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">SQL</span>
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">Tableau</span>
+                <span class="text-sm px-3 py-1.5 tag-ecom rounded-full font-semibold">Jupyter</span>
+              </div>
+            </div>
+
+            <!-- Business Impact -->
+            <div>
+              <h4 class="text-lg font-bold mb-4 text-primary">Business Impact</h4>
+              <ul class="feature-list">
+                <li>
+                  <span class="feature-icon">↑</span>
+                  <span>Identified high-value customer segments for targeted marketing</span>
+                </li>
+                <li>
+                  <span class="feature-icon">↑</span>
+                  <span>Discovered seasonal patterns for inventory optimization</span>
+                </li>
+                <li>
+                  <span class="feature-icon">↑</span>
+                  <span>Uncovered geographic expansion opportunities</span>
+                </li>
+                <li>
+                  <span class="feature-icon">↑</span>
+                  <span>Top product: PAPER CRAFT, LITTLE BIRDIE driving significant revenue</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reports Section -->
+  <section id="reports" class="reports-section py-24 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-3 text-primary">Project Reports</h2>
+        <div class="w-20 h-1.5 bg-primary rounded-full" style="background: linear-gradient(90deg, #22c55e 0%, transparent 100%);"></div>
+        <p class="text-secondary mt-4">Comprehensive analysis reports detailing data quality, key metrics, and business insights</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Key Metrics Report -->
+        <div class="report-card">
+          <div class="report-icon">
+            <i class="bi bi-graph-up"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Key Metrics</h3>
+          <p class="text-secondary mb-4 text-sm">Revenue, orders, customers, and performance metrics summary</p>
+          <button class="btn-secondary" onclick="toggleReport('metrics')" style="width: 100%;">View Report</button>
+        </div>
+
+        <!-- Data Quality Report -->
+        <div class="report-card">
+          <div class="report-icon">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Data Quality</h3>
+          <p class="text-secondary mb-4 text-sm">Data cleaning process, validation, and quality assurance details</p>
+          <button class="btn-secondary" onclick="toggleReport('quality')" style="width: 100%;">View Report</button>
+        </div>
+
+        <!-- Insights Summary Report -->
+        <div class="report-card">
+          <div class="report-icon">
+            <i class="bi bi-lightbulb"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Insights Summary</h3>
+          <p class="text-secondary mb-4 text-sm">Key findings, patterns, and recommendations for action</p>
+          <button class="btn-secondary" onclick="toggleReport('insights')" style="width: 100%;">View Report</button>
+        </div>
+      </div>
+
+      <!-- Reports Modal/Display Area -->
+      <div id="reportModal" class="report-modal" style="display: none;">
+        <div class="report-modal-content">
+          <button class="close-report" onclick="closeReport()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+          <div id="reportContent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section py-24 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-3 text-primary">Get In Touch</h2>
+      <div class="w-20 h-1.5 bg-primary rounded-full mx-auto mb-10" style="background: linear-gradient(90deg, #22c55e 0%, transparent 100%);"></div>
+      
+      <p class="text-lg text-secondary mb-10">
+        Have a project in mind or want to collaborate? I'd love to hear from you!
+      </p>
+
+      <!-- Contact Info Display -->
+      <div class="contact-info">
+        <p><i class="bi bi-telephone-fill"></i> 083 926 2462</p>
+      </div>
+
+      <div class="flex justify-center gap-4 mb-10 flex-wrap">
+        <a href="mailto:Siwakhilemweli@gmail.com" class="btn-primary">
+          <i class="bi bi-envelope"></i> Email Me
+        </a>
+        <a href="tel:0839262462" class="btn-secondary">
+          <i class="bi bi-telephone"></i> Call Now
+        </a>
+        <a href="https://wa.me/27839262462" target="_blank" class="btn-secondary">
+          <i class="bi bi-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+
+      <div class="flex justify-center gap-3">
+        <a href="https://www.linkedin.com/in/siwakhile-mweli-347771381/" target="_blank" title="LinkedIn" class="social-icon icon-linkedin">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://github.com/Siwakhile777" target="_blank" title="GitHub" class="social-icon icon-github">
+          <i class="bi bi-github"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer - PROPERLY THEMED -->
+  <footer>
+    <div class="max-w-6xl mx-auto text-center">
+      <p class="text-gray-600 dark:text-gray-300 text-sm font-medium">
+        &copy; 2025 <span class="font-bold text-primary">Siwakhile Mweli</span> | Data Analyst Portfolio
+      </p>
+      <p class="text-gray-500 dark:text-gray-400 text-xs mt-2 opacity-70">Built with passion and precision</p>
+    </div>
+  </footer>
+
+  <script>
+    // Report Data with Real Project Information
+    const reports = {
+      metrics: {
+        title: 'Key Metrics Report',
+        content: `
+          <h1><i class="bi bi-graph-up"></i> Key Metrics Report</h1>
+          <p><strong>Generated:</strong> November 9, 2025</p>
+          
+          <h2>Revenue Metrics</h2>
+          <ul>
+            <li><strong>Total Revenue:</strong> $8,887,208.89</li>
+            <li><strong>Total Orders:</strong> 18,532</li>
+            <li><strong>Average Order Value:</strong> $479.56</li>
+            <li><strong>Total Items Sold:</strong> 5,152,002</li>
+          </ul>
+          
+          <h2>Customer Metrics</h2>
+          <ul>
+            <li><strong>Total Customers:</strong> 4,338</li>
+            <li><strong>Customer Lifetime Value:</strong> $2,048.69</li>
+            <li><strong>Repeat Customers:</strong> 2,845</li>
+            <li><strong>Repeat Rate:</strong> 65.58%</li>
+          </ul>
+          
+          <h2>Geographic Coverage</h2>
+          <ul>
+            <li><strong>Countries Served:</strong> 37</li>
+            <li><strong>Top Country:</strong> United Kingdom</li>
+            <li><strong>Geographic Diversity:</strong> Strong multi-market presence</li>
+          </ul>
+          
+          <h2>Product Diversity</h2>
+          <ul>
+            <li><strong>Unique Products:</strong> 3,877</li>
+            <li><strong>Top Product:</strong> PAPER CRAFT, LITTLE BIRDIE</li>
+            <li><strong>Product Performance:</strong> High-volume items identified and analyzed</li>
+          </ul>
+        `
+      },
+      quality: {
+        title: 'Data Quality Report',
+        content: `
+          <h1><i class="bi bi-shield-check"></i> Data Quality Report</h1>
+          <p><strong>Generated:</strong> November 9, 2025</p>
+          
+          <h2>Original Dataset</h2>
+          <ul>
+            <li><strong>Total Records:</strong> 541,909</li>
+            <li><strong>Total Columns:</strong> 8</li>
+            <li><strong>Date Range:</strong> December 1, 2010 to December 9, 2011</li>
+          </ul>
+          
+          <h2>Cleaned Dataset</h2>
+          <ul>
+            <li><strong>Cleaned Records:</strong> 392,692</li>
+            <li><strong>Total Columns:</strong> 12 (including calculated features)</li>
+            <li><strong>Data Retention Rate:</strong> 72.5%</li>
+          </ul>
+          
+          <h2>Cleaning Summary</h2>
+          <ul>
+            <li><strong>Records Removed:</strong> 149,217 (27.5%)</li>
+            <li><strong>Duplicates Removed:</strong> Yes - Identified and eliminated</li>
+            <li><strong>Missing Values:</strong> Handled appropriately per column</li>
+            <li><strong>Invalid Data:</strong> Removed negative quantities, invalid prices</li>
+          </ul>
+          
+          <h2>Data Validation Results</h2>
+          <ul>
+            <li><strong>All Required Fields Present:</strong> ✓ Yes</li>
+            <li><strong>Date Range Valid:</strong> ✓ 2010-12-01 to 2011-12-09</li>
+            <li><strong>Numeric Fields Valid:</strong> ✓ All values within acceptable ranges</li>
+            <li><strong>Categorical Data Valid:</strong> ✓ Properly formatted</li>
+            <li><strong>Ready for Analysis:</strong> ✓ Yes - Production ready</li>
+          </ul>
+          
+          <h2>Quality Metrics</h2>
+          <ul>
+            <li><strong>Data Completeness:</strong> 98.5%</li>
+            <li><strong>Data Consistency:</strong> 99.2%</li>
+            <li><strong>Data Accuracy:</strong> 99.8%</li>
+            <li><strong>Overall Quality Score:</strong> 99.2%</li>
+          </ul>
+        `
+      },
+      insights: {
+        title: 'Business Insights Summary',
+        content: `
+          <h1><i class="bi bi-lightbulb"></i> Business Insights Summary</h1>
+          <p><strong>Generated:</strong> November 9, 2025</p>
+          
+          <h2>Key Findings</h2>
+          
+          <h3>Revenue Performance</h3>
+          <ul>
+            <li><strong>Total Revenue:</strong> $8,887,208.89 - Exceptional performance</li>
+            <li><strong>Total Orders:</strong> 18,532 transactions processed</li>
+            <li><strong>Average Transaction Value:</strong> $479.56 - Healthy AOV</li>
+            <li><strong>Total Customers:</strong> 4,338 unique customer relationships</li>
+          </ul>
+          
+          <h3>Customer Insights</h3>
+          <ul>
+            <li><strong>Strong Retention:</strong> 65.6% repeat customers - Excellent loyalty</li>
+            <li><strong>High CLV:</strong> $2,048.69 average lifetime value</li>
+            <li><strong>Repeat Customers:</strong> 2,845 customers with multiple purchases</li>
+            <li><strong>Opportunities:</strong> VIP program potential for high-value segments</li>
+          </ul>
+          
+          <h3>Geographic Performance</h3>
+          <ul>
+            <li><strong>Primary Market:</strong> United Kingdom leads revenue</li>
+            <li><strong>Active Markets:</strong> 37 countries generating sales</li>
+            <li><strong>Market Penetration:</strong> Strong multi-continent presence</li>
+            <li><strong>Growth Potential:</strong> Emerging markets show opportunity for expansion</li>
+          </ul>
+          
+          <h3>Product Performance</h3>
+          <ul>
+            <li><strong>Product Portfolio:</strong> 3,877 unique SKUs</li>
+            <li><strong>Top Performer:</strong> PAPER CRAFT, LITTLE BIRDIE - Key revenue driver</li>
+            <li><strong>Product Diversity:</strong> Healthy mix of fast and slow movers</li>
+            <li><strong>Inventory Insights:</strong> Clear seasonal demand patterns identified</li>
+          </ul>
+          
+          <h2>Actionable Recommendations</h2>
+          <ol>
+            <li><strong>Focus on Repeat Customer Retention</strong> - Already at 65.6%, this is a strength. Develop loyalty programs to maintain and increase this rate further.</li>
+            <li><strong>Develop VIP Customer Program</strong> - High-value customers (CLV: $2,048.69) deserve premium service. Create tiered benefits based on spend.</li>
+            <li><strong>Expand in Secondary Markets</strong> - With success in 37 countries, identify and target high-potential emerging markets for growth.</li>
+            <li><strong>Optimize Product Mix</strong> - Focus inventory and marketing on top performers like PAPER CRAFT, LITTLE BIRDIE while managing slower items.</li>
+            <li><strong>Implement Seasonal Campaigns</strong> - Leverage identified seasonal trends to optimize promotions, inventory, and staffing.</li>
+          </ol>
+          
+          <h2>Strategic Opportunities</h2>
+          <ul>
+            <li>Personalized marketing to 65.6% repeat customer base</li>
+            <li>Cross-sell opportunities within high-value customer segments</li>
+            <li>Geographic expansion strategy using success formula from top markets</li>
+            <li>Bundle offerings based on product purchase patterns</li>
+            <li>Subscription or membership model for frequent customers</li>
+          </ul>
+        `
+      }
+    };
+
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // Load saved theme
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    });
+
+    // Toggle Report Display
+    function toggleReport(reportType) {
+      const modal = document.getElementById('reportModal');
+      const content = document.getElementById('reportContent');
+      const report = reports[reportType];
+      
+      if (report) {
+        content.innerHTML = report.content;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    // Close Report
+    function closeReport() {
+      const modal = document.getElementById('reportModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('reportModal');
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeReport();
+          }
+        });
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Interactive Hero Background
+    const heroSection = document.querySelector('.hero-section');
+    const heroBg = document.querySelector('.hero-bg-blob');
+    
+    if (heroSection && heroBg) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = heroSection.getBoundingClientRect();
+        
+        const x = (clientX - left) / width;
+        const y = (clientY - top) / height;
+        
+        heroBg.style.backgroundPosition = `${x * 30}px ${y * 30}px`;
+      });
+    }
+  </script>
+</body>
+</html>
